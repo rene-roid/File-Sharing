@@ -2,6 +2,7 @@ import { useState } from 'react';
 import useUpload from '../hooks/useUpload';
 
 function FileUpload() {
+
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [message, setMessage] = useState<string>('');
@@ -32,7 +33,7 @@ function FileUpload() {
       const link = await uploadFile(file);
       setLoading(false);
       if (link) {
-        const fullLink = `http://localhost:5173/file/${link}`;
+        const fullLink = `${window.location.href}file/${link}`;
         setDownloadLink(fullLink);
         setMessage(`File uploaded successfully.`);
       } else {
@@ -46,6 +47,7 @@ function FileUpload() {
       navigator.clipboard.writeText(downloadLink);
       setMessage('Download link copied to clipboard.');
     }
+
   };
 
   return (

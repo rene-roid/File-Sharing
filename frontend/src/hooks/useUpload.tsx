@@ -11,7 +11,8 @@ const useUpload = () => {
 
     const uploadFile = async (file: File) => {
         try {
-            const API_URL = 'https://api.thekenji.xyz/api/v1';
+            // const API_URL = 'https://api.thekenji.xyz/api/v1';
+            const API_URL = 'http://localhost:8000/api/v1';
 
             const formData = new FormData();
             formData.append('file', file);

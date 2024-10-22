@@ -7,8 +7,8 @@ function preventCrossSiteScripting(req: Request, res: Response, next: NextFuncti
 }
  
 export function applyServerHardening(app: Express): void {
-  app.use(bodyParser.urlencoded({ extended: true }));
-  app.use(bodyParser.json());
-  app.disable('x-powered-by');
-  app.use(preventCrossSiteScripting);
+  // app.use(bodyParser.urlencoded({ extended: true }));
+  // app.use(bodyParser.json());
+  // app.disable('x-powered-by');
+  // app.use(preventCrossSiteScripting);
 }

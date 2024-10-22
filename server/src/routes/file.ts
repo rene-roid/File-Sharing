@@ -6,7 +6,7 @@ import { storeFile, getFile, scheduleFileDeletion } from '../services/fileServic
 
 const router = Router();
 const UPLOAD_DIR = path.join(__dirname, '../../../s3');
-const API_URL = 'https://api.thekenji.xyz/api/v1';
+// const API_URL = 'https://api.thekenji.xyz/api/v1';
 
 // Multer storage configuration
 const storage = multer.diskStorage({
@@ -48,11 +48,11 @@ router.get('/download/:id', (req: Request, res: Response) => {
     // Extract the filename from the file path
     const fileName = fileData.filePath.split('/').pop() || 'downloaded_file';
 
-    // Set the Content-Disposition header to include the filename
-    res.setHeader('Content-Disposition', `attachment; filename="${fileName}"`);
+    // Set a custom header
+    res.setHeader('X-Custom-Header', 'YourCustomHeaderValue');
 
     // Serve the file for download
-    res.download(fileData.filePath, (err) => {
+    res.download(fileData.filePath, fileName, (err) => {
         if (err) console.error(`Failed to download file: ${fileData.filePath}`, err);
     });
 });
